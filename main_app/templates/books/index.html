@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Available Book List</h1>
+
+{% for book in books %}
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ book.title }}</span>
+        <p>Synopsis: {{ book.synopsis }}</p>
+        <p>Number of Pages: {{ book.pages }}</p>
+        <p>Year Published: {{ book.year_published }}</p>
+        <p>Genre: {{ book.genre }}</p>
+        <p>Library of Congress Control number: {{ book.lccn }}</p>
+        <p>Number available: {{ book.quantity }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+    

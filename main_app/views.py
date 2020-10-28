@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Book
 
 # Add the following import
 from django.http import HttpResponse
@@ -10,6 +12,6 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def books(request):
+def books_index(request):
+    books = Book.objects.all()
     return render(request, 'books/index.html', {'books': books})
-    
