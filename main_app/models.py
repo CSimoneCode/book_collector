@@ -12,3 +12,5 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
+
+## https://docs.djangoproject.com/en/3.1/ref/models/instances/
