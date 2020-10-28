@@ -8,4 +8,8 @@ def home(request):
     return HttpResponse('<h1>Hello /ᐠ｡‸｡ᐟ\ﾉ</h1>')
 
 def about(request):
-    return HttpResponse('<h1> About Page </h1>')
+    return render(request, 'about.html')
+
+def books(request):
+    return render(request, 'books/index.html', {'books': books})
+    
