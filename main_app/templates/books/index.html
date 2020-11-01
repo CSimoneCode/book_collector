@@ -1,21 +1,23 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} 
 
+{% block title %}
+All books
+{% endblock %}
+
+{% block content %}
 <h1>Available Book List</h1>
 
 {% for book in books %}
 <div class="card">
     <div class="card-content">
-        <span class="card-title">{{ book.title }}</span>
+        <span class="card-title"><a href="{% url 'books_show' book.id %}">{{book.title }}</a></span>
+        <p><strong>Author: {{ book.author }}</strong></p>
         <p>Synopsis: {{ book.synopsis }}</p>
-        <p>Number of Pages: {{ book.pages }}</p>
+        <p>Number of words: {{ book.word_count }}</p>
         <p>Year Published: {{ book.year_published }}</p>
         <p>Genre: {{ book.genre }}</p>
-        <p>Library of Congress Control number: {{ book.lccn }}</p>
-        <p>Number available: {{ book.quantity }}</p>
+        <p>International Standard Book Number: {{ book.isbn }}</p>
     </div>
 </div>
-{% endfor %}
-
-{% endblock %}
+{% endfor %} {% endblock %}
     

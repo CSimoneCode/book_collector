@@ -1,16 +1,41 @@
 from django.db import models
 
+GENRES = (
+    ('AA', 'Action and Adventures'),
+    ('CL', 'Classics'),
+    ('GC', 'Graphic Novels/Comic Books'),
+    ('DM', 'Detective/Mysteries'),
+    ('FA', 'Fantasies'),
+    ('HF', 'Historical Fiction'),
+    ('HR', 'Horror'),
+    ('LF', 'Literary Fiction'),
+    ('RO', 'Romance'),
+    ('SF', 'Science Fiction'),
+    ('SS', 'Short Stories'),
+    ('ST', 'Suspense/Thrillers'),
+    ('AB', 'Autobiographies/Biographies'),
+    ('CO', 'Cookbooks'),
+    ('HI', 'History'),
+    ('PO', 'Poetry'),
+    ('SH', 'Self-Help'),
+    ('TC', 'True Crime')
+)
+
 class Book(models.Model):
     title = models.CharField(max_length=150)
+    author = models.CharField(max_length=100)
     synopsis = models.TextField(max_length=500)
-    pages = models.CharField(max_length=5)
-    year_published = models.IntegerField(max_length=7)
-    genre = models.CharField(max_length=30) ### May make this a dropdown eventually
-    lccn = models.CharField(max_length=15)
-    quantity = models.IntegerField(max_length=4)
+    word_count = models.IntegerField(null=True)
+    year_published = models.IntegerField()
+    genre = models.CharField(
+        max_length=2,
+        choices=GENRES,
+        default=GENRES[7][0]) ### May make this a dropdown eventually
+    isbn = models.CharField(max_length=13, null=True)
 
     def __str__(self):
-        return self.title
+        return f'{self.title} by {self.author}'
     
 
-## https://docs.djangoproject.com/en/3.1/ref/models/instances/
+## User create profile --- Django has User baked in so you need to extend it
+

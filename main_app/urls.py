@@ -3,8 +3,12 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
+    # static routes
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
-    path('books/', views.books_index, name='books_index')
+    # book routes
+    path('books/', views.books_index, name='books_index'),
+    path('books/new', views.books_new, name='books_new'),
+    path('books/<int:book_id>/', views.books_show, name='books_show')
 ]
     
