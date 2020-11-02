@@ -30,8 +30,10 @@ class Book(models.Model):
     genre = models.CharField(
         max_length=2,
         choices=GENRES,
-        default=GENRES[7][0]) ### May make this a dropdown eventually
-    isbn = models.CharField(max_length=13, null=True)
+        default=GENRES[7][1])
+    isbn = models.CharField(
+        max_length=13, 
+        null=True)
 
     def __str__(self):
         return f'{self.title} by {self.author}'

@@ -3,9 +3,6 @@ from django.http import HttpResponse
 from .models import Book
 from .forms import BookForm
 
-# Add the following import
-from django.http import HttpResponse
-
 ### ------- Static pages
 def home(request):
     return render(request, 'home.html')
@@ -38,3 +35,16 @@ def books_new(request):
         form = BookForm()
         context = {'form': form}
         return render(request, 'books/new.html', context)
+
+def books_edit(request, book_id):
+    book = Book.objects.get(id=book_id)
+
+    if request.method == 'POST':
+        book_form = BookForm(request.POST, instance=book)
+        if book_form.is_valid():
+            updated_book = book_form.save()
+            return redirect('books_show', updated_book.id)
+    else:
+        form = BookForm(instance=book)
+        context ={'form': form ,'book': book}
+        return render(request, 'books/edit.html', context)
